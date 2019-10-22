@@ -14,5 +14,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //misal udah dirubah ni, kamu commit di...
+        //perubahan ke 2
     }
 }
