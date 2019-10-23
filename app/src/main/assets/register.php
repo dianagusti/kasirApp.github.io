@@ -1,51 +1,46 @@
 <?php
-require("init.php");
+	
+	//Import File Koneksi database
+	require_once('conn.php');
 
-class usr{}
-$nama = mysqli_real_escape_string($con, $_POST["nama"]);
-$email = mysqli_real_escape_string($con, $_POST["email"]);
-$password = mysqli_real_escape_string($con, $_POST["password"]);
-$confirm_password = mysqli_real_escape_string($con, $_POST["confirm_password"]);
+	if($_SERVER['REQUEST_METHOD']=='POST'){
 
-if ((empty($email))) { 
-	$response = new usr();
-	$response->success = 0;
-	$response->message = "Email tidak boleh kosong !"; 
-	die(json_encode($response));
-} else if ((empty($password))) { 
-	$response = new usr();
-	$response->success = 0;
-	$response->message = "Password tidak boleh kosong !"; 
-	die(json_encode($response));
-} else if ((empty($confirm_password)) || $password != $confirm_password) { 
-	$response = new usr();
-	$response->success = 0;
-	$response->message = "Konfirmasi password tidak sama !"; 
-	die(json_encode($response));
-} else {
-	if (!empty($nama) && !empty($email) && $password == $confirm_password){
-		$num_rows = mysqli_num_rows(mysqli_query($con, "SELECT * FROM users WHERE email='".$email."'"));
-	    if ($num_rows == 0){
-    	    $query = mysqli_query($con, "INSERT INTO users (id, nama, email, password) VALUES(null,'".$nama."','".$email."','".md5($password)."')");
-            if ($query){
-	            $response = new usr();
-	            $response->success = 1;
-	            $response->message = "Registrasi berhasil, silahkan login !";
-	            die(json_encode($response));
-	        } else {
-	            $response = new usr();
-	            $response->success = 0;
-	            $response->message = "Email sudah terdaftar !";
-	            die(json_encode($response));
-	 		}
-	 	} else {
-			$response = new usr();
-     		$response->success = 0;
-	 		$response->message = "Email sudah terdaftar !";
-	 		die(json_encode($response));
-	 	}
-    }
-}
+		//Mendapatkan Nilai Variable
+		$nama = $_POST['nama'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];		
+		$date = date("Y-m-d H:i:s");
+		
+		//$confirm_password = $_POST['confirm_password'];
 
-mysqli_close($con);
+		// get from database
+		$query = "SELECT email, password from users";
+		$result = mysqli_query($con, $query);
+		
+		if(!$result){
+			echo 'Silahkan check database anda';
+		}
+		
+		$row = mysqli_fetch_assoc($result);
+
+		if($email == $row['email']){
+			echo 'Gagal, alamat email sudah terdaftar';
+			//$_SESSION['admin'] = false;
+		} else {
+			
+			//Pembuatan Syntax SQL
+			$sql = "INSERT INTO users (nama,email,password,user_created,user_updated) VALUES ('$nama','$email','$password','$date','$date')";
+
+			//Eksekusi Query database
+			if(mysqli_query($con, $sql)){
+				
+				echo 'Berhasil Menambahkan User';
+			}else{
+				echo 'Gagal Menambahkan User';
+			}
+		}
+		
+		mysqli_close($con);
+	}
+
 ?>	

@@ -1,6 +1,8 @@
 package com.example.kasir.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
@@ -8,14 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kasir.helper.PreferencesUtils;
+import com.example.kasir.helper.RequestHandler;
 import com.example.kasir.helper.SqliteHelper;
-import com.example.kasir.model.User;
+import com.example.kasir.ConfigDB;
 import com.example.kasir.R;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        checkIsLogin();
+
         setContentView(R.layout.activity_login);
 
         sqliteHelper = new SqliteHelper(this);
@@ -52,10 +60,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (validate()) {
 
                     //Get values from EditText fields
-                    String Email = editTextEmail.getText().toString();
-                    String Password = editTextPassword.getText().toString();
+                    final String email = editTextEmail.getText().toString();
+                    final String password = editTextPassword.getText().toString();
 
-                    //Authenticate user
+                    loginUser(email, password);
+
+
+
+                    /*//Authenticate user
                     User currentUser = sqliteHelper.Authenticate(new User(null, null, Email, Password));
 
                     //Check Authentication is successful or not
@@ -72,11 +84,60 @@ public class LoginActivity extends AppCompatActivity {
                         //com.example.User Logged in Failed
                         Snackbar.make(buttonLogin, "Failed to log in , please try again", Snackbar.LENGTH_LONG).show();
 
-                    }
+                    }*/
                 }
             }
         });
 
+    }
+
+    private void checkIsLogin() {
+        if (PreferencesUtils.isLogin(this)) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
+    }
+
+    private void loginUser(final String email, final String password) {
+        class loginUser extends AsyncTask<Void,Void,String> {
+
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(LoginActivity.this,
+                        "Login...","Tunggu...",false,false);
+            }
+
+            @Override
+            protected String doInBackground(Void... v) {
+                HashMap<String,String> params = new HashMap<>();
+                params.put(ConfigDB.KEY_EMP_EMAIL, email);
+                params.put(ConfigDB.KEY_EMP_PASSWORD, password);
+
+                RequestHandler rh = new RequestHandler();
+
+                return rh.sendPostRequest(ConfigDB.URL_LOGIN, params);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(LoginActivity.this, s, Toast.LENGTH_LONG).show();
+                if (s != null) {
+                    if (s.contains("berhasil")) {
+                        PreferencesUtils.setLogin(LoginActivity.this, true);
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    }
+                }
+            }
+        }
+
+        loginUser ae = new loginUser();
+        ae.execute();
     }
 
     //this method used to set Create account TextView text and click event( maltipal colors

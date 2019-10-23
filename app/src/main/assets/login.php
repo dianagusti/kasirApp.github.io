@@ -1,32 +1,31 @@
 <?php
-require("init.php");
-class usr{}
-$email = mysqli_real_escape_string($con, $_POST["email"]);
-$password = md5(mysqli_real_escape_string($con, $_POST["password"]));
+	require("conn.php");
+	
+	if($_SERVER['REQUEST_METHOD']=='POST'){
+		$email = trim($_POST['email']);
+		$password = trim($_POST['password']);
 
-if ((empty($email)) || (empty($password))) { 
-	$response = new usr();
-	$response->success = 0;
-	$response->message = "Email dan password tidak boleh kosong !"; 
-	die(json_encode($response));
-}
+		$email = mysqli_real_escape_string($con, $email);
+		$password = mysqli_real_escape_string($con, $password);
 
-$query = mysqli_query($con, "SELECT * FROM users WHERE email='$email' AND password='$password'");
-$row = mysqli_fetch_array($query);
-if (!empty($row)){
-	$response = new usr();
-	$response->success = 1;
-	$response->message = "Selamat datang ".$row['nama']." di Herbal Twinning System";
-	$response->id = $row['id'];
-	$response->nama = $row['nama'];
-	$response->email = $row['email'];
-	die(json_encode($response));
-} else { 
-	$response = new usr();
-	$response->success = 0;
-	$response->message = "Email atau password salah !";
-	die(json_encode($response));
-}
+		// get from database
+		$query = "SELECT * FROM users WHERE email='$email' AND password='$password'"; //email, password
+		$result = mysqli_query($con, $query);
+		
+		if(!$result){
+			echo 'Silahkan check database anda';
+		}
+		
+		$row = mysqli_fetch_assoc($result);
 
-mysqli_close();
+		if(!empty($row)){
+			echo 'Login user berhasil';
+			//$_SESSION['admin'] = true;
+		} else {
+			echo 'Anda tidak memiliki otoritas masuk';
+			//$_SESSION['admin'] = false;
+		}
+	}
+	
+	mysqli_close($con);
 ?>
