@@ -15,6 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
         //misal udah dirubah ni, kamu commit di...
         //perubahan ke 2
-        //update 3
+        //update 
     }
 }
