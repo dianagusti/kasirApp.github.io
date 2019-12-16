@@ -1,5 +1,7 @@
 package com.example.kasir.helper;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -15,6 +17,9 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
 public class RequestHandler {
+
+    private static final String TAG = "RequestHandler";
+
     /*
     Metode Untuk mengirim httpPostRequest
     Metode ini mengambil 2 Argumen
@@ -23,6 +28,9 @@ public class RequestHandler {
     */
     public String sendPostRequest(String requestURL,
                                   HashMap<String, String> postDataParams) {
+
+        Log.d(TAG, "postDataParams: " + postDataParams);
+
         //Membuat URL
         URL url;
 
@@ -56,18 +64,25 @@ public class RequestHandler {
             os.close();
             int responseCode = conn.getResponseCode();
 
+            Log.d(TAG, "responseCode : " + responseCode);
+
             if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 sb = new StringBuilder();
                 String response;
+
                 //Reading server response
                 while ((response = br.readLine()) != null){
                     sb.append(response);
                 }
+
+                Log.d(TAG, "response: " + response);
             }
 
         } catch (Exception e) {
+            sb.append("Error : ").append(e.getMessage());
+            Log.e(TAG, "Error : " + e);
             e.printStackTrace();
         }
         return sb.toString();

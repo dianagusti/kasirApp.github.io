@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     android:orientation="vertical"
     android:layout_gravity="center"
@@ -32,15 +31,13 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardHealtId"
+            android:id="@+id/healtCardId"
             android:layout_width="160dp"
             android:layout_height="180dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="onMenuClicked"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/white">
+            android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,8 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:padding="5dp"
                     android:text="Check your transaction"
                     android:textColor="@android:color/darker_gray" />
 
@@ -80,15 +76,13 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardMasterId"
+            android:id="@+id/masterCardId"
             android:layout_width="160dp"
             android:layout_height="180dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="onMenuClicked"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/white">
+            android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -119,8 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:padding="5dp"
                     android:text="Check your master data"
                     android:textColor="@android:color/darker_gray" />
 
@@ -137,15 +130,13 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardInventoriId"
+            android:id="@id/healtCardId"
             android:layout_width="160dp"
             android:layout_height="180dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:onClick="onMenuClicked"
-            app:cardBackgroundColor="@color/white">
+            android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -177,8 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:padding="5dp"
                     android:text="Check your inventory"
                     android:textColor="@android:color/darker_gray" />
 
@@ -186,15 +176,13 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardLaporanId"
+            android:id="@id/healtCardId"
             android:layout_width="160dp"
             android:layout_height="180dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:onClick="onMenuClicked"
-            app:cardBackgroundColor="@color/white">
+            android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -225,8 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:padding="5dp"
                     android:text="Check your report"
                     android:textColor="@android:color/darker_gray" />
 
@@ -237,34 +224,11 @@
 
     <Button
         android:id="@+id/logOut"
-        android:layout_gravity="end"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="40dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:background="@drawable/button_selector"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:text="Log Out" />
-
-    <Button
-        android:onClick="openBarcode"
-        android:layout_gravity="end"
-        android:visibility="visible"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:background="@drawable/button_selector"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:text="Barcode" />
 
 </LinearLayout>

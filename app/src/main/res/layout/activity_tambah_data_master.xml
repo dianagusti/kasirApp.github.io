@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".activity.TambahDataMasterActivity">
+
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="56dp"
+        android:layout_height="70dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/usericon"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_toRightOf="@id/imgIcon"
+        android:layout_toEndOf="@id/imgIcon"
+        android:id="@+id/textInputLayoutMaster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/MasukKategori"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:hint="Masukkan Kategori"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <EditText
+        android:layout_below="@id/textInputLayoutMaster"
+        android:id="@+id/NamaProduk"
+        android:hint="Nama Produk"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"/>
+
+    <EditText
+        android:layout_below="@id/NamaProduk"
+        android:id="@+id/Kode"
+        android:hint="Masukkan Kode"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"/>
+
+    <EditText
+        android:layout_below="@id/Kode"
+        android:id="@+id/HargaJual"
+        android:hint="Harga Jual"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"/>
+
+    <EditText
+        android:layout_below="@id/HargaJual"
+        android:id="@+id/Satuan"
+        android:hint="pcs"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"/>
+
+
+    <Button
+        android:visibility="visible"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:background="@drawable/button_selector"
+        android:textColor="@color/white"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="HAPUS"
+        android:id="@+id/HapusMaster"
+        android:layout_gravity="center"
+        android:layout_below="@id/Satuan"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="70dp"/>
+
+    <Button
+        android:id="@+id/EditMaster"
+        android:visibility="visible"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:background="@drawable/button_selector"
+        android:textColor="@color/white"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="EDIT"
+        android:layout_below="@id/Satuan"
+        android:layout_toRightOf="@id/HapusMaster"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="70dp"/>
+
+    <Button
+        android:id="@+id/SimpanMaster"
+        android:visibility="visible"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:background="@drawable/button_selector"
+        android:textColor="@color/white"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="SIMPAN"
+        android:layout_below="@id/Satuan"
+        android:layout_toRightOf="@id/EditMaster"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="70dp"/>
+
+
+</RelativeLayout>

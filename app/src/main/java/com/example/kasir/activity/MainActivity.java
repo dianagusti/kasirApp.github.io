@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.kasir.helper.PreferencesUtils;
 import com.example.kasir.R;
+import com.example.kasir.utils.UtilsDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,8 +25,34 @@ public class MainActivity extends AppCompatActivity {
                 PreferencesUtils.setLogin(MainActivity.this, false);
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
-
             }
         });
+    }
+
+    public void onMenuClicked(View view) {
+
+        int id = view.getId();
+
+        if (id == R.id.cardHealtId) {
+            UtilsDialog.showToast(this, "Health clicked!");
+        } else if (id == R.id.cardMasterId) {
+
+            Intent intent = new Intent(this, MasterDataActivity.class);
+            startActivity(intent);
+
+            UtilsDialog.showToast(this, "Master clicked!");
+        } else if (id == R.id.cardInventoriId) {
+
+            UtilsDialog.showToast(this, "Inventori clicked!");
+        } else if (id == R.id.cardLaporanId) {
+
+            UtilsDialog.showToast(this, "Laporan clicked!");
+        }
+    }
+
+    public void openBarcode(View view) {
+
+        startActivity(new Intent(MainActivity.this, BarcodeActivity.class));
+        //finish();
     }
 }

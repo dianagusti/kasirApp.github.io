@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,11 +20,16 @@ import com.example.kasir.helper.RequestHandler;
 import com.example.kasir.helper.SqliteHelper;
 import com.example.kasir.ConfigDB;
 import com.example.kasir.R;
+import com.example.kasir.utils.UtilsDialog;
 import com.google.android.material.textfield.TextInputLayout;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String TAG = "LoginActivity";
 
     //Declaration EditTexts
     EditText editTextEmail;
@@ -125,13 +131,39 @@ public class LoginActivity extends AppCompatActivity {
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(LoginActivity.this, s, Toast.LENGTH_LONG).show();
-                if (s != null) {
-                    if (s.contains("berhasil")) {
-                        PreferencesUtils.setLogin(LoginActivity.this, true);
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
+
+                Log.d(TAG, "pesan : " + s);
+
+                if (s == null) {
+                    UtilsDialog.showToast(getApplicationContext(), "Ada kesalahan, pesan : " + s);
+                    return;
+                }
+
+                if (s.startsWith("Error")) {
+                    UtilsDialog.showToast(getApplicationContext(), "Ada kesalahan, pesan : " + s);
+                    return;
+                }
+
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    Object objResponseCode = jsonObject.get("responseCode");
+
+                    if (objResponseCode instanceof  Integer) {
+                        Integer responseCode = ((Integer) objResponseCode);
+                        if (responseCode == 200) {
+                            UtilsDialog.showToast(getApplicationContext(), "Login user berhasil");
+                            PreferencesUtils.setLogin(LoginActivity.this, true);
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
+                            return;
+                        }
                     }
+
+                    UtilsDialog.showToast(getApplicationContext(), "Login user gagal");
+                } catch (Exception e) {
+                    UtilsDialog.showToast(getApplicationContext(), "Gagal parsing JSON");
+                    Log.e(TAG, "Gagal parsing JSON :" + e);
+                    e.printStackTrace();
                 }
             }
         }

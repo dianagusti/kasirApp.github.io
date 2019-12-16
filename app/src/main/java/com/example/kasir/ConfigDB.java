@@ -2,7 +2,7 @@ package com.example.kasir;
 
 public class ConfigDB {
 
-    private static final String HOST = "http://192.168.43.253/";
+    private static final String HOST = "http://192.168.0.243/";
 
     public static final String URL_REGISTER = HOST + "skripsi_diana/register.php";
     public static final String URL_LOGIN = HOST + "skripsi_diana/login.php";

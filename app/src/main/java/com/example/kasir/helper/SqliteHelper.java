@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.kasir.model.User;
 
-
+//MAU HAPUS, NANTI AJA
 public class SqliteHelper extends SQLiteOpenHelper {
 
     //DATABASE NAME
