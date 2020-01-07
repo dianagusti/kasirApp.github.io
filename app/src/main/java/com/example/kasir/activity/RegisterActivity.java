@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
 
-    //Declaration EditTexts
+    //Declaration  Variable EditTexts
     EditText editTextUserName;
     EditText editTextEmail;
     EditText editTextPassword;

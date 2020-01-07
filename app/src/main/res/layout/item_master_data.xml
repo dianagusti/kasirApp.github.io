@@ -52,11 +52,13 @@
 
         </LinearLayout>
 
+
         <View
             android:layout_below="@id/imgIcon"
             android:layout_width="match_parent"
             android:background="#C7C7C7"
             android:layout_height="0.7dp" />
+
 
     </RelativeLayout>
 

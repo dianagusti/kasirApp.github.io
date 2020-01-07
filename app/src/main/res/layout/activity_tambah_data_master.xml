@@ -1,116 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:padding="16dp"
     tools:context=".activity.TambahDataMasterActivity">
 
     <ImageView
         android:id="@+id/imgIcon"
         android:layout_width="56dp"
-        android:layout_height="70dp"
-        android:layout_marginRight="15dp"
+        android:layout_height="56dp"
         android:layout_marginEnd="15dp"
-        android:padding="10dp"
+        android:layout_marginRight="15dp"
         android:background="@color/colorPrimary"
-        android:src="@drawable/usericon"/>
+        android:padding="10dp"
+        android:src="@drawable/usericon" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_toRightOf="@id/imgIcon"
+    <Spinner
+        android:id="@+id/TypeKategori"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
         android:layout_toEndOf="@id/imgIcon"
-        android:id="@+id/textInputLayoutMaster"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/MasukKategori"
-            android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:hint="Masukkan Kategori"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_toRightOf="@id/imgIcon"
+        android:spinnerMode="dropdown" />
 
     <EditText
-        android:layout_below="@id/textInputLayoutMaster"
+        android:visibility="gone"
+        android:id="@+id/MasukKategori"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_toEndOf="@id/imgIcon"
+        android:layout_toRightOf="@id/imgIcon"
+        android:hint="Masukkan Kategori" />
+
+    <EditText
         android:id="@+id/NamaProduk"
-        android:hint="Nama Produk"
         android:layout_width="match_parent"
-        android:layout_height="61dp"/>
+        android:layout_height="61dp"
+        android:layout_below="@id/imgIcon"
+        android:hint="Nama Produk" />
 
     <EditText
-        android:layout_below="@id/NamaProduk"
         android:id="@+id/Kode"
-        android:hint="Masukkan Kode"
         android:layout_width="match_parent"
-        android:layout_height="61dp"/>
+        android:layout_height="61dp"
+        android:layout_below="@id/NamaProduk"
+        android:hint="Masukkan Kode" />
 
     <EditText
-        android:layout_below="@id/Kode"
         android:id="@+id/HargaJual"
-        android:hint="Harga Jual"
         android:layout_width="match_parent"
-        android:layout_height="61dp"/>
+        android:layout_height="61dp"
+        android:layout_below="@id/Kode"
+        android:hint="Harga Jual" />
 
     <EditText
-        android:layout_below="@id/HargaJual"
         android:id="@+id/Satuan"
-        android:hint="pcs"
         android:layout_width="match_parent"
-        android:layout_height="61dp"/>
+        android:layout_height="61dp"
+        android:layout_below="@id/HargaJual"
+        android:hint="pcs" />
 
 
-    <Button
-        android:visibility="visible"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:background="@drawable/button_selector"
-        android:textColor="@color/white"
-        android:layout_width="100dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HAPUS"
-        android:id="@+id/HapusMaster"
-        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
         android:layout_below="@id/Satuan"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="70dp"/>
+        android:orientation="horizontal"
+        android:weightSum="3">
 
-    <Button
-        android:id="@+id/EditMaster"
-        android:visibility="visible"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:background="@drawable/button_selector"
-        android:textColor="@color/white"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="EDIT"
-        android:layout_below="@id/Satuan"
-        android:layout_toRightOf="@id/HapusMaster"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="70dp"/>
+        <Button
+            android:id="@+id/HapusMaster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button_selector"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:text="HAPUS"
+            android:textColor="@color/white"
+            android:visibility="visible" />
 
-    <Button
-        android:id="@+id/SimpanMaster"
-        android:visibility="visible"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:background="@drawable/button_selector"
-        android:textColor="@color/white"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="SIMPAN"
-        android:layout_below="@id/Satuan"
-        android:layout_toRightOf="@id/EditMaster"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="70dp"/>
+        <Button
+            android:id="@+id/EditMaster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button_selector"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_weight="1"
+            android:text="EDIT"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/SimpanMaster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="onClickSimpanData"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_selector"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_weight="1"
+            android:text="SIMPAN"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>
