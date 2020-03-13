@@ -4,34 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.MasterDataActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:padding="10dp"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        tools:itemCount="15"
-        tools:listitem="@layout/item_master_data"/>
-
-    <!--<FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#F0F0F0"
-        android:padding="10dp"
-        android:layout_alignParentBottom="true" >
-
-        <Button
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/container_toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tambah Data"
-            android:background="@drawable/button_selector"
-            android:textColor="@color/white"/>
+            android:orientation="vertical">
 
-    </FrameLayout>-->
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+        </LinearLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                tools:itemCount="15"
+                tools:listitem="@layout/item_master_data"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+        <!--<FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F0F0F0"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true" >
+
+            <Button
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tambah Data"
+                android:background="@drawable/button_selector"
+                android:textColor="@color/white"/>
+
+        </FrameLayout>-->
+    </LinearLayout>
+
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:onClick="onTambahData"

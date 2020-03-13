@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".activity.FormMasterDataActivity">
+
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="20px"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_below="@+id/container_toolbar"
+                android:id="@+id/imgIcon"
+                android:onClick="pickImage"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:scaleType="centerCrop"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="0dp"
+                android:src="@drawable/usericon" />
+
+            <Spinner
+                android:layout_below="@+id/container_toolbar"
+                android:id="@+id/TypeKategori"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_toEndOf="@id/imgIcon"
+                android:layout_toRightOf="@id/imgIcon"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/MasukKategori"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_toEndOf="@id/imgIcon"
+            android:layout_toRightOf="@id/imgIcon"
+            android:hint="Masukkan Kategori" />
+
+        <EditText
+            android:id="@+id/edtIdProduk"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_below="@id/imgIcon"
+            android:hint="ID Produk" />
+
+        <EditText
+            android:id="@+id/NamaProduk"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_below="@id/imgIcon"
+            android:hint="Nama Produk" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/Kode"
+                android:layout_width="1dp"
+                android:layout_weight="0.8"
+                android:layout_height="61dp"
+                android:layout_below="@id/NamaProduk"
+                android:hint="Masukkan Kode" />
+            <Button
+                android:id="@+id/btnScan"
+                android:text="scan"
+                android:layout_width="1dp"
+                android:layout_weight="0.2"
+                android:layout_height="50dp">
+
+            </Button>
+        </LinearLayout>
+
+
+
+        <EditText
+            android:id="@+id/HargaJual"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_below="@id/Kode"
+            android:hint="Harga Jual" />
+
+        <EditText
+            android:id="@+id/Satuan"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_below="@id/HargaJual"
+            android:hint="pcs" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_below="@id/Satuan"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/HapusMaster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_selector"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:text="HAPUS"
+                android:textColor="@color/white"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/EditMaster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_selector"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_weight="1"
+                android:text="EDIT"
+                android:textColor="@color/white"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/SimpanMaster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_selector"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_weight="1"
+                android:text="SIMPAN"
+                android:textColor="@color/white"
+                android:visibility="visible" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

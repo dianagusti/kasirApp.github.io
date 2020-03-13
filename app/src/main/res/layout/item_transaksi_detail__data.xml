@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:text="Desc example"
-                    tools:text="@tools:sample/lorem"/>
+                    tools:text="@tools:sample/lorem"/>x
 
             </LinearLayout>
 
@@ -67,6 +67,6 @@
                 android:layout_height="0.7dp" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

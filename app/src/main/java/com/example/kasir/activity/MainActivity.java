@@ -12,13 +12,6 @@ import com.example.kasir.utils.UtilsDialog;
 //kalau engga ke register ada warning orange
 public class MainActivity extends AppCompatActivity {
 
-    /*
-    * onCreate, pertama kali diakses. di onCreate ada setContentView(R.layout.activity_main); untuk set konten layout
-    * gimana? misal;
-    *
-    *
-    * */
-
     //untuk set konten dan init data view. terserah intinya ini pertama kali diakses :D
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +39,16 @@ public class MainActivity extends AppCompatActivity {
 
         int id = view.getId();
 
-        if (id == R.id.cardHealtId) {
-            UtilsDialog.showToast(this, "Transaksi clicked!");
+        if (id == R.id.cardTransaksi) {
+//            UtilsDialog.showToast(this, "Transaksi clicked!");
+            Intent intent = new Intent(this, TransaksiActivity.class);
+            startActivity(intent);
         } else if (id == R.id.cardMasterId) {
 
             Intent intent = new Intent(this, MasterDataActivity.class);
             startActivity(intent);
 
-            UtilsDialog.showToast(this, "Master clicked!");
+//            UtilsDialog.showToast(this, "Master clicked!");
         } else if (id == R.id.cardInventoriId) {
 
             UtilsDialog.showToast(this, "Inventori clicked!");

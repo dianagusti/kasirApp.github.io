@@ -67,13 +67,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Check user input is correct or not
-                if (validate()) { //passed :D
+                if (validate()) {
 
                     //Get values from EditText fields
-                    final String email = editTextEmail.getText().toString(); //passed :D
-                    final String password = editTextPassword.getText().toString(); //passed :D
+                    final String email = editTextEmail.getText().toString();
+                    final String password = editTextPassword.getText().toString();
 
-                    loginUser(email, password); //ini?variable wkwkw yg isinya email sma pass nya, ini method jangan lupa.
+                    loginUser(email, password); //ini method
                 }
             }
         });
@@ -122,17 +122,16 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginUser(final String email, final String password) {
 
-        //ini inner class. tau?engga. didalam class ada class. seharusnya static biar performance lebih baik.
+        //ini inner class. didalam class ada class. seharusnya static biar performance lebih baik.
 
         loginUser ae = new loginUser(email, password);
         /*
-        selesai :D, ayok jelasin wkwkw. tau maksunya ini? tau. apa?engga tau aja wkwk ga yakin aku wkwk
-        ini membuat obyek baru. obyek loginUser, email dan password sebagai parameter di constructornya. tau kan? iya tau
-        sip. ini obyek asyntask namanya. berjalan di background.
+        ini membuat obyek baru. obyek loginUser, email dan password sebagai parameter di constructornya.
+        ini obyek asyntask namanya. berjalan di background.
         */
         ae.execute();
         /*
-        ini untuk execute task untuk menjalankan task di background. tau?. background itu seperti berjalan di luar.
+        ini untuk execute task untuk menjalankan task di background. background itu seperti berjalan di luar.
         jadi tidak mempengaruhi kinerja UI. iya mas tau. mari kita buka loginUser nya...
         */
     }
@@ -159,12 +158,12 @@ public class LoginActivity extends AppCompatActivity {
         //cek apakah email valid engga, misal format nama@domain.com. harus valid
         if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
             /*
-            perhatikan tanda !, jangan sampai salah. tau kan?iya tidak kan tndanya
+            perhatikan tanda !, jangan sampai salah.
             tanda ! artinya not. misal nilai true, kalau !true jadi false.
             ini nilainya true ("android.util.Patterns.EMAIL_ADDRESS.matcher(Email).matches()"), karena ! jadi false.
             bahasa indonesianya if not true = false, maka..., !android.util.Patterns
             ini pattern dari android untuk mempermudah. Patterns.EMAIL_ADDRESS.matcher(NAMA_EMAIL).matches() artinya jika match/valid.
-            emang bentuknya gitu kalo pattern d android? iya itu akses function, nilainya kan boolean. next?iya
+            emang bentuknya gitu kalo pattern d android? iya itu akses function, nilainya kan boolean.
             jika eengga valid setError nanti muncul di input emailnya
             */
             valid = false;
@@ -193,19 +192,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
-        /*
-        ini bukan aku yang ngetik hlo. hayo apa? kan aku copas dari gatau lupa hehe :D
-        yang engga tau yang mana? eh engga bentar aku baca hehe, yg dri public boolean validate kan?
-        iya baca itu kan 1 method/function,okayy bentar,,
-        */
 
         return valid;
     }
 
-    /*
-    gausah static dulu. banyak yang perlu diubah kamu bingung nanti. :D, iya td ku juga maubilan gitu, tusemua merah oren2
-    ini merah karena aku keluarkan dari method. harusnya class tidak boleh ada didalam method. enga usah d ubah2 gpp mas wkwkw
-    */
+
     private class loginUser extends AsyncTask<Void,Void,String> {
 
         ProgressDialog loading;
@@ -237,7 +228,7 @@ public class LoginActivity extends AppCompatActivity {
             // init obyek
             RequestHandler rh = new RequestHandler();
 
-            //request ke php server dengan params diatas.ini yg d maksud params yg mana?okayy mas engga usah detail2. ini agak expert :D
+            //request ke php server dengan params diatas.
             return rh.sendPostRequest(ConfigDB.URL_LOGIN, params);
         }
 
@@ -261,16 +252,14 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            /*
-            * sampai disini ngerti?ngerti in syaa Allah, next. hehe.
-            * */
+
             try {
                 /*
                 * ini json objek di java, untuk parse response json string/text kedalam bentuk objek.
                 * */
                 JSONObject jsonObject = new JSONObject(response);
 
-                //coba get objek dengan key "responseCode". tau kan? hayo, engga tau hehe. ini hlo. penting tau maksudnya dulu.
+                //ini get objek dengan key "responseCode".
                 Object objResponseCode = jsonObject.get("responseCode");
 
                 //jika objek instance dari Integer, maksunya objek dari superclass integer/ parent katakanlah.
